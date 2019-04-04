@@ -16,9 +16,9 @@ Mais s'amuser l'est tout autant ! depuis le menu du haut cliquez sur jouer ! vou
 
 obtenez l'icone cuisinier modele en trouvant pour le niveau 1 le produit ayant le meilleur nutriscore!
 
-pour le niveau deux 4 nouveaux produits s'ajoutent ! et le niveau 3 8 produits ou plusieurs alimlent de nutriscore se présentent. 
+pour le niveau deux 4 nouveaux produits s'ajoutent ! et le niveau 3 8 produits ou plusieurs alimlent de nutriscore A se présentent. 
 
-Attention plus le niveau augmente plus les poits sont punitifs !
+Attention plus le niveau augmente plus les points sont punitifs !
 
 
 
