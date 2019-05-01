@@ -1,5 +1,6 @@
 # p11
-ajouter une fonctionalité
+
+#en plus de ce site mesurez vous a dk (demadne a kevin et refactorise tout)
 
 # projet-8
 
