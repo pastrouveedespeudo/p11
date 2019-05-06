@@ -53,9 +53,32 @@ def fichier():
     return nouveau_file
 
 
+def trait_list(a):
+    print(a)
+    a = str(a)
+    a = a[7:-4]
+    
+    listeeee = []
+    for i in a:
+
+        if i == "'" or i == ",":
+            pass
+        else:
+            listeeee.append(i)
+    print(listeeee)
+    listeeee = "".join(listeeee)
+    listeeee = listeeee.split()
+
+ 
+    print(len(listeeee))
+    print(listeeee)
+
+    return listeeee
+
+
 LISTE_CHOIX  = []
 LISTE_CASE = []
-
+LISTE_POS = ['right', 'left', 'top', 'bot']
 
 class main:
 
@@ -88,7 +111,6 @@ class main:
 
 
 
-
     def generate_level(self, choix, fenetre):
 
         print(choix)
@@ -109,35 +131,14 @@ class main:
 
 
 
-    def trying(self, dk):
+    def trying(self, dk, fenetre, fond, niveau):
 
-        pygame.time.Clock().tick(30)
-
-        for event in pygame.event.get():
-  
-            if event.type == QUIT:
-                    continuer_jeu = 0
-                    continuer = 0
+        print(requete0.REQUETE0 >= 100)
         
-
-        if requete0.REQUETE0 >= 5:
+        if requete0.REQUETE0 >= 100:
             a = visualisation_table.visualisation(self)
-            a = str(a)
-            a = a[7:-4]
-            
-            listeeee = []
-            for i in a:
+            listeeee = trait_list(a)
 
-                if i == "'" or i == ",":
-                    pass
-                else:
-                    listeeee.append(i)
-            
-            listeeee = "".join(listeeee)
-            listeeee = listeeee.split()
-
-         
-            print(len(listeeee))
             for i in listeeee:
                 print(i)
                 dep = dk.deplacer(str(i))
@@ -147,45 +148,44 @@ class main:
                     file.write(str(requete0.REQUETE0 + 1))
                 importlib.reload(requete0)
 
+                fenetre.blit(fond, (0,0))
+                niveau.afficher(fenetre)
+                fenetre.blit(dk.direction, (dk.x, dk.y)) 
+                pygame.display.flip()
+
+
 
     def game(self, dk, fenetre, fond, niveau):
+        print("yoooooooooooooooooooooooooooooooooo")
         
         continuer_jeu = 1
         while continuer_jeu:
             
-            liste = ['right', 'left', 'top', 'bot']
-            choix = random.choice(liste)
-
+            choix = random.choice(LISTE_POS)
 
             if choix == 'right':
                 a = dk.deplacer('droite')
                 LISTE_CHOIX.append('droite')
-
+           
                 try:
                     if a[1] == 's':
-                        print(a[0])
-                        print(len(LISTE_CHOIX))
                         
                         if a[0] >= len(LISTE_CHOIX):
-                            print("oui")
-                            insertion_table.insertion_climat(self, str(LISTE_CHOIX))
+                            print(LISTE_CHOIX)
+                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
                             continuer_jeu = 0
                             
                         elif a[0] < len(LISTE_CHOIX):
                             continuer_jeu = 0
                             
                         if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 == 5:
-                                pass
-                            else:
+                            if REQUETE0 >= 100:
                                 with open('requete0.py', 'w') as file:
                                     file.write('REQUETE0 = ')
-                                    file.write(str(REQUETE0 + 1))
-                                
+                                    file.write(str(requete0.REQUETE0 + 1))      
                 except:
                     pass
-                if a == 'STOP':
-                    continuer_jeu = 0
+
                 if a == 'M':
                     liste1 = ['left', 'top', 'bot']
                     choix = random.choice(liste1)
@@ -193,12 +193,10 @@ class main:
                     dep = dk.deplacer(choix)
        
                     
-
-
-                    
             elif choix == 'left':
                 b = dk.deplacer('gauche')
                 LISTE_CHOIX.append('gauche')
+               
 
 
                 try:
@@ -208,19 +206,16 @@ class main:
                         
                         if b[0] >= len(LISTE_CHOIX):
                             print("oui")
-                            insertion_table.insertion_climat(self, str(LISTE_CHOIX))
+                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
                             continuer_jeu = 0
                             
                         elif a[0] < len(LISTE_CHOIX):
                             continuer_jeu = 0
                             
                         if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 == 5:
+                            if REQUETE0 >= 100:
                                 pass
-                            else:
-                                with open('requete0.py', 'w') as file:
-                                    file.write('REQUETE0 = ')
-                                    file.write(str(REQUETE0 + 1))
+
                 except:
                     pass
                 
@@ -232,34 +227,30 @@ class main:
              
                     dep = dk.deplacer(choix)
           
-
-
-
-          
             elif choix == 'top':
                 c = dk.deplacer('haut')
                 LISTE_CHOIX.append('haut')
+            
           
                 try:
                     if c[1] == 's':
-                        print(c[0])
-                        print(len(LISTE_CHOIX))
+            
+                        print(LISTE_CHOIX)
                         
                         if c[0] >= len(LISTE_CHOIX):
                             print("oui")
-                            insertion_table.insertion_climat(self, str(LISTE_CHOIX))
+                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
                             continuer_jeu = 0
                             
                         elif a[0] < len(LISTE_CHOIX):
                             continuer_jeu = 0
                             
                         if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 == 5:
-                                pass
-                            else:
+                            if REQUETE0 >= 100:
                                 with open('requete0.py', 'w') as file:
                                     file.write('REQUETE0 = ')
-                                    file.write(str(REQUETE0 + 1))
+                                    file.write(str(requete0.REQUETE0 + 1))  
+
                 except:
                     pass
                 
@@ -275,26 +266,26 @@ class main:
             elif choix == 'bot':
                 d = dk.deplacer('bas')
                 LISTE_CHOIX.append('bas')
+            
       
                 try:
                     if d[1] == 's':
                         print(d[0])
-                        print(len(LISTE_CHOIX))
+                        print(LISTE_CHOIX)
                         if  d[0] >= len(LISTE_CHOIX):
                             print('oui')
-                            insertion_table.insertion_climat(self, str(LISTE_CHOIX))
+                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
                             continuer_jeu = 0
                             
                         elif a[0] < len(LISTE_CHOIX):
                             continuer_jeu = 0
                             
                         if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 == 5:
-                                pass
-                            else:
+                            if REQUETE0 >= 100:
                                 with open('requete0.py', 'w') as file:
                                     file.write('REQUETE0 = ')
-                                    file.write(str(REQUETE0 + 1))
+                                    file.write(str(requete0.REQUETE0 + 1))  
+
                 except:
                     pass
                     
@@ -330,8 +321,11 @@ if __name__ == '__main__':
     main = main()
     choice = main.menu()
     perso = main.generate_level(choice[0], choice[1])
-    main.trying(perso[0])
-    main.game(perso[0], choice[1], perso[1], perso[2])
+
+    if requete0.REQUETE0 >= 5:
+        main.trying(perso[0], choice[1], perso[1], perso[2])
+    else:
+        main.game(perso[0], choice[1], perso[1], perso[2])
 
 
 
