@@ -59,7 +59,6 @@ LISTE_CASE = []
 
 class main:
 
-
     def menu(self):
         
         pygame.init()
@@ -110,58 +109,50 @@ class main:
 
 
 
-    def game(self, dk, fenetre, fond, niveau):
+    def trying(self, dk):
 
-             
+        pygame.time.Clock().tick(30)
+
+        for event in pygame.event.get():
+  
+            if event.type == QUIT:
+                    continuer_jeu = 0
+                    continuer = 0
+        
+
+        if requete0.REQUETE0 >= 5:
+            a = visualisation_table.visualisation(self)
+            a = str(a)
+            a = a[7:-4]
+            
+            listeeee = []
+            for i in a:
+
+                if i == "'" or i == ",":
+                    pass
+                else:
+                    listeeee.append(i)
+            
+            listeeee = "".join(listeeee)
+            listeeee = listeeee.split()
+
+         
+            print(len(listeeee))
+            for i in listeeee:
+                print(i)
+                dep = dk.deplacer(str(i))
+                
+                with open('requete0.py', 'w') as file:
+                    file.write('REQUETE0 = ')
+                    file.write(str(requete0.REQUETE0 + 1))
+                importlib.reload(requete0)
+
+
+    def game(self, dk, fenetre, fond, niveau):
+        
         continuer_jeu = 1
         while continuer_jeu:
-        
- 
-            pygame.time.Clock().tick(30)
-
-            for event in pygame.event.get():
-      
-                if event.type == QUIT:
-                        continuer_jeu = 0
-                        continuer = 0
             
-
-            if requete0.REQUETE0 == 5:
-                print("ouiiiiiiiiiiiiiii")
-                a = visualisation_table.visualisation(self)
-                a = str(a)
-                a = a[7:-4]
-                
-                listeeee = []
-                for i in a:
-
-                    if i == "'" or i == ",":
-                        pass
-                    else:
-                        listeeee.append(i)
-                
-                listeeee = "".join(listeeee)
-                listeeee = listeeee.split()
-
-             
-                print(len(listeeee))
-                for i in listeeee:
-                    print(i)
-                    dep = dk.deplacer(str(i))
-                    
-
-                    with open('requete0.py', 'w') as file:
-                        file.write('REQUETE0 = ')
-                        file.write(str(requete0.REQUETE0 + 1))
-                    importlib.reload(requete0)
-
-
-
-                
-
-
-
-
             liste = ['right', 'left', 'top', 'bot']
             choix = random.choice(liste)
 
@@ -191,7 +182,6 @@ class main:
                                     file.write('REQUETE0 = ')
                                     file.write(str(REQUETE0 + 1))
                                 
-
                 except:
                     pass
                 if a == 'STOP':
@@ -340,6 +330,7 @@ if __name__ == '__main__':
     main = main()
     choice = main.menu()
     perso = main.generate_level(choice[0], choice[1])
+    main.trying(perso[0])
     main.game(perso[0], choice[1], perso[1], perso[2])
 
 
