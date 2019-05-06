@@ -155,6 +155,40 @@ class main:
 
 
 
+    def moving(self, direction, listed, dk):
+        self.direction = direction
+        self.listed = listed
+        self.dk = dk
+
+        
+        a = self.dk.deplacer(self.direction)
+        LISTE_CHOIX.append(self.direction)
+        try:
+            if a[1] == 's':
+                if a[0] >= len(LISTE_CHOIX):
+                    print(LISTE_CHOIX)
+                    insertion_table.insertion_move(self, str(LISTE_CHOIX))
+                    continuer_jeu = 0
+                    return continuer_jeu
+                
+                elif a[0] < len(LISTE_CHOIX):
+                    continuer_jeu = 0
+                    return continuer_jeu
+                    
+                if a[0] == len(LISTE_CHOIX):
+                    if REQUETE0 >= 100:
+                        with open('requete0.py', 'w') as file:
+                            file.write('REQUETE0 = ')
+                            file.write(str(requete0.REQUETE0 + 1))      
+        except:
+            pass
+        if a == 'M':
+            choix = random.choice(self.listed)
+            dep = dk.deplacer(choix)
+
+
+
+
     def game(self, dk, fenetre, fond, niveau):
         print("yoooooooooooooooooooooooooooooooooo")
         
@@ -163,140 +197,27 @@ class main:
             
             choix = random.choice(LISTE_POS)
 
+            listed = ['left', 'top', 'bot']
+            listeh = ['left', 'right', 'bot']
+            listeb = ['left', 'top', 'right']
+            listeg = ['right', 'top', 'bot']
+            
             if choix == 'right':
-                a = dk.deplacer('droite')
-                LISTE_CHOIX.append('droite')
-           
-                try:
-                    if a[1] == 's':
-                        
-                        if a[0] >= len(LISTE_CHOIX):
-                            print(LISTE_CHOIX)
-                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
-                            continuer_jeu = 0
-                            
-                        elif a[0] < len(LISTE_CHOIX):
-                            continuer_jeu = 0
-                            
-                        if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 >= 100:
-                                with open('requete0.py', 'w') as file:
-                                    file.write('REQUETE0 = ')
-                                    file.write(str(requete0.REQUETE0 + 1))      
-                except:
-                    pass
-
-                if a == 'M':
-                    liste1 = ['left', 'top', 'bot']
-                    choix = random.choice(liste1)
-
-                    dep = dk.deplacer(choix)
-       
-                    
-            elif choix == 'left':
-                b = dk.deplacer('gauche')
-                LISTE_CHOIX.append('gauche')
-               
-
-
-                try:
-                    if c[1] == 's':
-                        print(b[0])
-                        print(len(LISTE_CHOIX))
-                        
-                        if b[0] >= len(LISTE_CHOIX):
-                            print("oui")
-                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
-                            continuer_jeu = 0
-                            
-                        elif a[0] < len(LISTE_CHOIX):
-                            continuer_jeu = 0
-                            
-                        if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 >= 100:
-                                pass
-
-                except:
-                    pass
-                
-                if b == 'STOP':
+                cont = main.moving('droite', listed, dk)
+                if cont == 0:
                     continuer_jeu = 0
-                if b == 'M':
-                    liste1 = ['right', 'top', 'bot']
-                    choix = random.choice(liste1)
-             
-                    dep = dk.deplacer(choix)
-          
-            elif choix == 'top':
-                c = dk.deplacer('haut')
-                LISTE_CHOIX.append('haut')
-            
-          
-                try:
-                    if c[1] == 's':
-            
-                        print(LISTE_CHOIX)
-                        
-                        if c[0] >= len(LISTE_CHOIX):
-                            print("oui")
-                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
-                            continuer_jeu = 0
-                            
-                        elif a[0] < len(LISTE_CHOIX):
-                            continuer_jeu = 0
-                            
-                        if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 >= 100:
-                                with open('requete0.py', 'w') as file:
-                                    file.write('REQUETE0 = ')
-                                    file.write(str(requete0.REQUETE0 + 1))  
-
-                except:
-                    pass
-                
-                if c == 'STOP':
+            if choix == 'left': 
+                cont = main.moving('gauche', listeg, dk)
+                if cont == 0:
                     continuer_jeu = 0
-                if c == 'M':
-                   liste1 = ['right','left', 'bot']
-                   choix = random.choice(liste1)
-
-                   dep = dk.deplacer(choix)
-          
-                   
-            elif choix == 'bot':
-                d = dk.deplacer('bas')
-                LISTE_CHOIX.append('bas')
-            
-      
-                try:
-                    if d[1] == 's':
-                        print(d[0])
-                        print(LISTE_CHOIX)
-                        if  d[0] >= len(LISTE_CHOIX):
-                            print('oui')
-                            insertion_table.insertion_move(self, str(LISTE_CHOIX))
-                            continuer_jeu = 0
-                            
-                        elif a[0] < len(LISTE_CHOIX):
-                            continuer_jeu = 0
-                            
-                        if a[0] == len(LISTE_CHOIX):
-                            if REQUETE0 >= 100:
-                                with open('requete0.py', 'w') as file:
-                                    file.write('REQUETE0 = ')
-                                    file.write(str(requete0.REQUETE0 + 1))  
-
-                except:
-                    pass
-                    
-                if d == 'STOP':
+            if choix == 'bot':
+                cont = main.moving('bas', listeb, dk)
+                if cont == 0:
                     continuer_jeu = 0
-                if d == 'M':
-                    liste1 = ['right', 'left', 'top']
-                    choix = random.choice(liste1)
-            
-                    dep = dk.deplacer(choix)
-            
+            if choix == 'top':
+                cont = main.moving('haut', listeh, dk)
+                if cont == 0:
+                    continuer_jeu = 0
 
    
             fenetre.blit(fond, (0,0))
