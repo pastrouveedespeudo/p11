@@ -86,7 +86,7 @@ class Niveau:
             num_ligne += 1
                     
                     
-    
+LISTE = []
                     
 class Perso:
     """Classe permettant de créer un personnage"""
@@ -106,7 +106,148 @@ class Perso:
    
         self.niveau = niveau
     
+
+
+    def adroite(self):
+        mokouaille = ''
+        
+        if self.case_x < (nombre_sprite_cote - 1):
+            
+       
+            if self.niveau.structure[self.case_y][self.case_x+1] == '0' and\
+               self.niveau.structure[self.case_y][self.case_x+2] == 'M' and\
+               self.niveau.structure[self.case_y-1][self.case_x+1] == 'M' and\
+               self.niveau.structure[self.case_y+1][self.case_x+1] == 'M':
+
+                
+                mokouaille = True
+
+            if self.niveau.structure[self.case_y][self.case_x+1] == 's':
+                
+                a = visualisation_table.visualisation(self)
+                a = str(a)
+                a = a.split()
+         
+                self.case_x += 1
+                
+                return len(a),'s'
+
+
+            if self.niveau.structure[self.case_y][self.case_x+1] != 'm'\
+               and self.niveau.structure[self.case_y][self.case_x+1] != 'M' and\
+               mokouaille != True:
+                if mokouaille == True:
+                    pass
+                self.case_x += 1
+
+                LISTE.append((self.x, self.y))
+        
+                self.x = self.case_x * taille_sprite
+
+         
+                
+    def agauche(self):
+         
+        if self.case_x > 0:
+
+             if self.niveau.structure[self.case_y][self.case_x-1] == 's':
+
+                 a = visualisation_table.visualisation(self)
+
+                 self.case_x -= 1
+  
+                 a = str(a)
+                 a = a.split()
+                 return len(a),'s'
+
+             if self.niveau.structure[self.case_y][self.case_x-1] != '0' and\
+               self.niveau.structure[self.case_y][self.case_x-2] != 'M' and\
+               self.niveau.structure[self.case_y-1][self.case_x-1] != 'M' and\
+               self.niveau.structure[self.case_y+1][self.case_x-1] != 'M':
+                self.case_x -= 1
+                
+             if self.niveau.structure[self.case_y][self.case_x-1] != 'm'\
+                and self.niveau.structure[self.case_y][self.case_x-1] != 'M':
+                self.case_x -= 1
+                LISTE.append((self.x, self.y))
+                self.x = self.case_x * taille_sprite
+                    
+
+    def ahaut(self):
+
+        if self.case_y > 0:
+            if self.niveau.structure[self.case_y-1][self.case_x] == 's':
+
+                a = visualisation_table.visualisation(self)
+
+                self.case_y -= 1
+  
+
+                a = str(a)
+                a = a.split()
+                return len(a), 's'
+                    
+            if self.niveau.structure[self.case_y-1][self.case_x] != '0' and\
+               self.niveau.structure[self.case_y-2][self.case_x] != 'M' and\
+               self.niveau.structure[self.case_y-1][self.case_x-1] != 'M' and\
+               self.niveau.structure[self.case_y-1][self.case_x+1] != 'M':
+                self.case_y -= 1
+                
+            if self.niveau.structure[self.case_y-1][self.case_x] != 'm'\
+               and self.niveau.structure[self.case_y-1][self.case_x] != 'M':
+                self.case_y -= 1
+                LISTE.append((self.x, self.y))
+                self.y = self.case_y * taille_sprite
+ 
+
+
+
+    def abas(self):
+        
+        mokouaille = ''
+
+        if self.case_y < (nombre_sprite_cote - 1):
+
+            try:
+                if self.niveau.structure[self.case_y + 1][self.case_x] == 's':
+
+                    a = visualisation_table.visualisation(self)
     
+                    self.case_y += 1
+ 
+
+                    a = str(a)
+                    a = a.split()
+                    return len(a), 's'
+                    
+                    
+                if self.niveau.structure[self.case_y + 1][self.case_x] == '0' and\
+                   self.niveau.structure[self.case_y + 2][self.case_x] == 'M' and\
+                   self.niveau.structure[self.case_y + 1][self.case_x + 1] == 'M' and\
+                   self.niveau.structure[self.case_y + 1][self.case_x - 1] == 'M':
+ 
+                    mokouaille = True
+
+
+
+
+                if self.niveau.structure[self.case_y+1][self.case_x] != 'm'\
+                   and self.niveau.structure[self.case_y+1][self.case_x] != 'M' and\
+                   mokouaille != True:
+                    if mokouaille == True:
+                        pass
+                    self.case_y += 1
+                    LISTE.append((self.x, self.y))
+                    self.y = self.case_y * taille_sprite
+                    
+            except:
+                pass
+
+
+
+
+
+
     def deplacer(self, direction):
         """Methode permettant de déplacer le personnage"""
         LISTE = []
@@ -120,145 +261,22 @@ class Perso:
         if int(self.x)/30 == 0 and  int(self.y)/30 == 0:
             pass
 
-
-
-        mokouaille = ''
-           
         if direction == 'droite':
-
-            if self.case_x < (nombre_sprite_cote - 1):
-                
-                try:
-                    if self.niveau.structure[self.case_y][self.case_x+1] == '0' and\
-                       self.niveau.structure[self.case_y][self.case_x+2] == 'M' and\
-                       self.niveau.structure[self.case_y-1][self.case_x+1] == 'M' and\
-                       self.niveau.structure[self.case_y+1][self.case_x+1] == 'M':
-  
-                        
-                        mokouaille = True
-
-                    if self.niveau.structure[self.case_y][self.case_x+1] == 's':
-
-                        a = visualisation_table.visualisation(self)
-                        a = str(a)
-                        a = a.split()
-                 
+            sauve = Perso.adroite(self)
+            return sauve
         
-                        self.case_x += 1
-                        return len(a),'s'
-
-
-                    
-                    if self.niveau.structure[self.case_y][self.case_x+1] != 'm'\
-                       and self.niveau.structure[self.case_y][self.case_x+1] != 'M' and\
-                       mokouaille != True:
-                        if mokouaille == True:
-                            pass
-                        self.case_x += 1
-
-                        LISTE.append((self.x, self.y))
-                
-                        self.x = self.case_x * taille_sprite
-
-                except:
-                    pass
+        elif direction == 'gauche':
+            sauve = Perso.agauche(self)
+            return sauve
         
-        if direction == 'gauche':
-            if self.case_x > 0:
-
-                 if self.niveau.structure[self.case_y][self.case_x-1] == 's':
-    
-                     a = visualisation_table.visualisation(self)
-
-                     self.case_x -= 1
-      
-                     a = str(a)
-                     a = a.split()
-                     return len(a),'s'
-    
-                 if self.niveau.structure[self.case_y][self.case_x-1] != '0' and\
-                   self.niveau.structure[self.case_y][self.case_x-2] != 'M' and\
-                   self.niveau.structure[self.case_y-1][self.case_x-1] != 'M' and\
-                   self.niveau.structure[self.case_y+1][self.case_x-1] != 'M':
-                    self.case_x -= 1
-                    
-                 if self.niveau.structure[self.case_y][self.case_x-1] != 'm'\
-                    and self.niveau.structure[self.case_y][self.case_x-1] != 'M':
-                    self.case_x -= 1
-                    LISTE.append((self.x, self.y))
-                    self.x = self.case_x * taille_sprite
-                    
-
-
-        if direction == 'haut':
-            if self.case_y > 0:
-                if self.niveau.structure[self.case_y-1][self.case_x] == 's':
-   
-                    a = visualisation_table.visualisation(self)
-
-                    self.case_y -= 1
-      
-  
-                    a = str(a)
-                    a = a.split()
-                    return len(a), 's'
-                        
-                if self.niveau.structure[self.case_y-1][self.case_x] != '0' and\
-                   self.niveau.structure[self.case_y-2][self.case_x] != 'M' and\
-                   self.niveau.structure[self.case_y-1][self.case_x-1] != 'M' and\
-                   self.niveau.structure[self.case_y-1][self.case_x+1] != 'M':
-                    self.case_y -= 1
-                    
-                if self.niveau.structure[self.case_y-1][self.case_x] != 'm'\
-                   and self.niveau.structure[self.case_y-1][self.case_x] != 'M':
-                    self.case_y -= 1
-                    LISTE.append((self.x, self.y))
-                    self.y = self.case_y * taille_sprite
- 
-
-
-
-
-        mokouaille = ''
-
-        if direction == 'bas':
-            if self.case_y < (nombre_sprite_cote - 1):
-
-                try:
-                    if self.niveau.structure[self.case_y + 1][self.case_x] == 's':
-
-                        a = visualisation_table.visualisation(self)
+        elif direction == 'haut':      
+            sauve = Perso.ahaut(self)
+            return sauve
         
-                        self.case_y += 1
-     
-  
-                        a = str(a)
-                        a = a.split()
-                        return len(a), 's'
-                        
-                        
-                    if self.niveau.structure[self.case_y + 1][self.case_x] == '0' and\
-                       self.niveau.structure[self.case_y + 2][self.case_x] == 'M' and\
-                       self.niveau.structure[self.case_y + 1][self.case_x + 1] == 'M' and\
-                       self.niveau.structure[self.case_y + 1][self.case_x - 1] == 'M':
-     
-                        mokouaille = True
-
-
-
-
-                    if self.niveau.structure[self.case_y+1][self.case_x] != 'm'\
-                       and self.niveau.structure[self.case_y+1][self.case_x] != 'M' and\
-                       mokouaille != True:
-                        if mokouaille == True:
-                            pass
-                        self.case_y += 1
-                        LISTE.append((self.x, self.y))
-                        self.y = self.case_y * taille_sprite
-                        
-                except:
-                    pass
-
+        elif direction == 'bas':
+            sauve = Perso.abas(self)
+            return sauve
+        
 
 
 
