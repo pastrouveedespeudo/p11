@@ -21,6 +21,7 @@ import requete0
 import importlib
 import time
 
+
 def écriture(fichier, liste):
     with open(fichier, 'w') as file:
         file.write('a = ')
@@ -43,18 +44,18 @@ def fichier():
            or i == '__pycache__':
                 pass
         else:
-                liste2.append(i)
+            liste2.append(i)
 
     nb = liste2[-1][-4]
     nb = int(nb)
     nouvau_nb = nb + 1
     nouveau_file = 'requete' + str(nouvau_nb) + '.py'
-    print(nouveau_file)
+
     return nouveau_file
 
 
 def trait_list(a):
-    print(a)
+
     a = str(a)
     a = a[7:-4]
     
@@ -65,13 +66,9 @@ def trait_list(a):
             pass
         else:
             listeeee.append(i)
-    print(listeeee)
+            
     listeeee = "".join(listeeee)
     listeeee = listeeee.split()
-
- 
-    print(len(listeeee))
-    print(listeeee)
 
     return listeeee
 
@@ -113,8 +110,6 @@ class main:
 
     def generate_level(self, choix, fenetre):
 
-        print(choix)
-     
         if choix != 0:
 
             fond = pygame.image.load(image_fond).convert()
@@ -142,17 +137,11 @@ class main:
             for i in listeeee:
                 print(i)
                 dep = dk.deplacer(str(i))
-                
-                with open('requete0.py', 'w') as file:
-                    file.write('REQUETE0 = ')
-                    file.write(str(requete0.REQUETE0 + 1))
-                importlib.reload(requete0)
 
                 fenetre.blit(fond, (0,0))
                 niveau.afficher(fenetre)
                 fenetre.blit(dk.direction, (dk.x, dk.y)) 
                 pygame.display.flip()
-
 
 
     def moving(self, direction, listed, dk):
@@ -166,7 +155,6 @@ class main:
         try:
             if a[1] == 's':
                 if a[0] >= len(LISTE_CHOIX):
-                    print(LISTE_CHOIX)
                     insertion_table.insertion_move(self, str(LISTE_CHOIX))
                     continuer_jeu = 0
                     return continuer_jeu
@@ -176,10 +164,9 @@ class main:
                     return continuer_jeu
                     
                 if a[0] == len(LISTE_CHOIX):
-                    if REQUETE0 >= 100:
-                        with open('requete0.py', 'w') as file:
-                            file.write('REQUETE0 = ')
-                            file.write(str(requete0.REQUETE0 + 1))      
+                    with open('requete0.py', 'w') as file:
+                        file.write('REQUETE0 = ')
+                        file.write(str(requete0.REQUETE0 + 1))      
         except:
             pass
         if a == 'M':
@@ -190,8 +177,7 @@ class main:
 
 
     def game(self, dk, fenetre, fond, niveau):
-        print("yoooooooooooooooooooooooooooooooooo")
-        
+
         continuer_jeu = 1
         while continuer_jeu:
             
@@ -226,16 +212,7 @@ class main:
             pygame.display.flip()
 
 
-            if niveau.structure[dk.case_y][dk.case_x] == 'a':
-                continuer_jeu = 0
-                print(LISTE_CHOIX)
-                print(LISTE_CASE)
            
-
-
-
-
-
 
 if __name__ == '__main__':
     
@@ -243,58 +220,9 @@ if __name__ == '__main__':
     choice = main.menu()
     perso = main.generate_level(choice[0], choice[1])
 
-    if requete0.REQUETE0 >= 5:
+    if requete0.REQUETE0 >= 100:
         main.trying(perso[0], choice[1], perso[1], perso[2])
     else:
         main.game(perso[0], choice[1], perso[1], perso[2])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
