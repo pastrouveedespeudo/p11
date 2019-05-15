@@ -41,11 +41,11 @@ def fichier():
            or i == 'images'\
            or i == 'n1'\
            or i == 'n2'\
-           or i == '__pycache__':
+           or i == '__pycache__' or i == 'test_dk.py':
                 pass
         else:
             liste2.append(i)
-
+    print(liste2)
     nb = liste2[-1][-4]
     nb = int(nb)
     nouvau_nb = nb + 1
@@ -55,7 +55,7 @@ def fichier():
 
 
 def trait_list(a):
-
+    print(a,'000000000000000000000000')
     a = str(a)
     a = a[7:-4]
     
@@ -69,7 +69,7 @@ def trait_list(a):
             
     listeeee = "".join(listeeee)
     listeeee = listeeee.split()
-
+    print(listeeee)
     return listeeee
 
 
@@ -103,7 +103,7 @@ class main:
             pygame.display.flip()
          
             level = Niveau.choice_level(self)
-
+            print(level, fenetre,'000000123132132')
             return level, fenetre
 
 
@@ -121,7 +121,7 @@ class main:
       
             dk = Perso("images/dk_droite.png", "images/dk_gauche.png", 
             "images/dk_haut.png", "images/dk_bas.png", niveau)
-
+            print(dk, fond, niveau)
             return dk, fond, niveau
 
 
@@ -192,18 +192,22 @@ class main:
                 cont = main.moving('droite', listed, dk)
                 if cont == 0:
                     continuer_jeu = 0
+                    print(len(LISTE_CHOIX))
             if choix == 'left': 
                 cont = main.moving('gauche', listeg, dk)
                 if cont == 0:
                     continuer_jeu = 0
+                    print(len(LISTE_CHOIX))
             if choix == 'bot':
                 cont = main.moving('bas', listeb, dk)
                 if cont == 0:
                     continuer_jeu = 0
+                    print(len(LISTE_CHOIX))
             if choix == 'top':
                 cont = main.moving('haut', listeh, dk)
                 if cont == 0:
                     continuer_jeu = 0
+                    print(len(LISTE_CHOIX))
 
    
             fenetre.blit(fond, (0,0))
@@ -224,5 +228,54 @@ if __name__ == '__main__':
         main.trying(perso[0], choice[1], perso[1], perso[2])
     else:
         main.game(perso[0], choice[1], perso[1], perso[2])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
