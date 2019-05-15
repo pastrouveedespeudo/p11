@@ -1,5 +1,6 @@
 # p11
 
+#par contre faut qu'heroku marche stp marche
 
 #ok faire manage.test pour django et pytest pour dk et rendre le code plus jolie et oublie pas la tu dois faire le traitemetn des couleurs
 
