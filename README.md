@@ -1,6 +1,8 @@
 # p11
 
 
+#ok faire manage.test pour django et pytest pour dk et rendre le code plus jolie et oublie pas la tu dois faire le traitemetn des couleurs
+
 #d'une part le jeu du site
 
 #https://github.com/pastrouveedespeudo/projet-8
