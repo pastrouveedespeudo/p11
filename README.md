@@ -1,6 +1,6 @@
 # p11
 
-#jpe faire un 15ene de test la gogogogoog
+#faire truk coverage mais chai pas c quoi
 
 #d'une part le jeu du site
 
