@@ -6,7 +6,7 @@ Jeu Donkey Kong Labyrinthe
 Jeu dans lequel on doit déplacer DK jusqu'aux bananes à travers un labyrinthe.
 
 Script Python
-Fichiers : dklabyrinthe.py, classes.py, constantes.py, n1, n2 + images
+files : dklabyrinthe.py, classes.py, constantes.py, n1, n2 + images
 """
 
 import pygame
@@ -22,12 +22,12 @@ import importlib
 import time
 
 
-def écriture(fichier, liste):
-    with open(fichier, 'w') as file:
+def writting(file, liste):
+    with open(file, 'w') as file:
         file.write('a = ')
         file.write(str(liste))
         
-def fichier():
+def file():
     liste2 = []
     liste = os.listdir()
     for i in liste:
@@ -41,17 +41,17 @@ def fichier():
            or i == 'images'\
            or i == 'n1'\
            or i == 'n2'\
-           or i == '__pycache__' or i == 'test_dk.py':
+           or i == '__pycache__' or i == 'test_dk.py' or i =='test_database.py':
                 pass
         else:
             liste2.append(i)
     print(liste2)
     nb = liste2[-1][-4]
     nb = int(nb)
-    nouvau_nb = nb + 1
-    nouveau_file = 'requete' + str(nouvau_nb) + '.py'
+    new_nb = nb + 1
+    new_file = 'requete' + str(new_nb) + '.py'
 
-    return nouveau_file
+    return new_file
 
 
 def trait_list(a):
@@ -73,7 +73,7 @@ def trait_list(a):
     return listeeee
 
 
-LISTE_CHOIX  = []
+LISTE_CHOICE  = []
 LISTE_CASE = []
 LISTE_POS = ['right', 'left', 'top', 'bot']
 
@@ -84,49 +84,49 @@ class main:
         pygame.init()
         print(requete0.REQUETE0)
 
-        fenetre = pygame.display.set_mode((cote_fenetre, cote_fenetre))
+        window = pygame.display.set_mode((side_window, side_window))
   
         icone = pygame.image.load(image_icone)
         pygame.display.set_icon(icone)
   
-        pygame.display.set_caption(titre_fenetre)
+        pygame.display.set_caption(title_window)
 
 
-        FILE = fichier()
+        FILE = file()
  
         continuer = 1
         while continuer:	
   
             accueil = pygame.image.load(image_accueil).convert()
-            fenetre.blit(accueil, (0,0))
+            window.blit(accueil, (0,0))
 
             pygame.display.flip()
          
             level = Niveau.choice_level(self)
 
-            return level, fenetre
+            return level, window
 
 
 
-    def generate_level(self, choix, fenetre):
+    def generate_level(self, choice, window):
 
-        if choix != 0:
+        if choice != 0:
 
-            fond = pygame.image.load(image_fond).convert()
+            background = pygame.image.load(image_background).convert()
 
-            niveau = Niveau(choix)
-            niveau.generer()
-            niveau.afficher(fenetre)
+            level = Niveau(choice)
+            level.generer()
+            level.display(window)
 
       
             dk = Perso("images/dk_droite.png", "images/dk_gauche.png", 
-            "images/dk_haut.png", "images/dk_bas.png", niveau)
+            "images/dk_haut.png", "images/dk_bas.png", level)
           
-            return dk, fond, niveau
+            return dk, background, level
 
 
 
-    def trying(self, dk, fenetre, fond, niveau):
+    def trying(self, dk, window, background, level):
 
         print(requete0.REQUETE0 >= 100)
         
@@ -138,9 +138,9 @@ class main:
                 print(i)
                 dep = dk.deplacer(str(i))
 
-                fenetre.blit(fond, (0,0))
-                niveau.afficher(fenetre)
-                fenetre.blit(dk.direction, (dk.x, dk.y)) 
+                window.blit(background, (0,0))
+                level.display(window)
+                window.blit(dk.direction, (dk.x, dk.y)) 
                 pygame.display.flip()
 
 
@@ -151,71 +151,71 @@ class main:
 
         
         a = self.dk.deplacer(self.direction)
-        LISTE_CHOIX.append(self.direction)
+        LISTE_CHOICE.append(self.direction)
         try:
             if a[1] == 's':
-                if a[0] >= len(LISTE_CHOIX):
-                    insertion_table.insertion_move(self, str(LISTE_CHOIX))
-                    continuer_jeu = 0
-                    return continuer_jeu
+                if a[0] >= len(LISTE_CHOICE):
+                    insertion_table.insertion_move(self, str(LISTE_CHOICE))
+                    continue_game = 0
+                    return continue_game
                 
-                elif a[0] < len(LISTE_CHOIX):
-                    continuer_jeu = 0
-                    return continuer_jeu
+                elif a[0] < len(LISTE_CHOICE):
+                    continue_game = 0
+                    return continue_game
                     
-                if a[0] == len(LISTE_CHOIX):
+                if a[0] == len(LISTE_CHOICE):
                     with open('requete0.py', 'w') as file:
                         file.write('REQUETE0 = ')
                         file.write(str(requete0.REQUETE0 + 1))      
         except:
             pass
         if a == 'M':
-            choix = random.choice(self.listed)
-            dep = dk.deplacer(choix)
+            choice = random.choice(self.listed)
+            dep = dk.deplacer(choice)
 
 
 
 
-    def game(self, dk, fenetre, fond, niveau):
+    def game(self, dk, window, background, level):
 
-        continuer_jeu = 1
-        while continuer_jeu:
+        continue_game = 1
+        while continue_game:
             
-            choix = random.choice(LISTE_POS)
+            choice = random.choice(LISTE_POS)
 
             listed = ['left', 'top', 'bot']
             listeh = ['left', 'right', 'bot']
             listeb = ['left', 'top', 'right']
             listeg = ['right', 'top', 'bot']
             
-            if choix == 'right':
+            if choice == 'right':
                 cont = main.moving('droite', listed, dk)
                 if cont == 0:
-                    continuer_jeu = 0
-                    print(len(LISTE_CHOIX))
+                    continue_game = 0
+                    print(len(LISTE_CHOICE))
                     
-            if choix == 'left': 
+            if choice == 'left': 
                 cont = main.moving('gauche', listeg, dk)
                 if cont == 0:
-                    continuer_jeu = 0
-                    print(len(LISTE_CHOIX))
+                    continue_game = 0
+                    print(len(LISTE_CHOICE))
                     
-            if choix == 'bot':
+            if choice == 'bot':
                 cont = main.moving('bas', listeb, dk)
                 if cont == 0:
-                    continuer_jeu = 0
-                    print(len(LISTE_CHOIX))
+                    continue_game = 0
+                    print(len(LISTE_CHOICE))
                     
-            if choix == 'top':
+            if choice == 'top':
                 cont = main.moving('haut', listeh, dk)
                 if cont == 0:
-                    continuer_jeu = 0
-                    print(len(LISTE_CHOIX))
+                    continue_game = 0
+                    print(len(LISTE_CHOICE))
 
    
-            fenetre.blit(fond, (0,0))
-            niveau.afficher(fenetre)
-            fenetre.blit(dk.direction, (dk.x, dk.y)) 
+            window.blit(background, (0,0))
+            level.display(window)
+            window.blit(dk.direction, (dk.x, dk.y)) 
             pygame.display.flip()
 
 
