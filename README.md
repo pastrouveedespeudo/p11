@@ -1,6 +1,6 @@
 # p11
 
-#faire truk coverage mais chai pas c quoi
+#le test coverage ne prend pas en compte les test de pylint
 
 #d'une part le jeu du site
 
