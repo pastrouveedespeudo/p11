@@ -24,12 +24,25 @@ import time
 
 def writting(file, liste):
     'function for writing into file'
-    with open(file, 'w') as file:
-        file.write('a = ')
-        file.write(str(liste))
+    print(file)
+    print(liste)
+    listee = []
+    
+    with open(file, 'w') as filee:
+        filee.write("a = '")
+        filee.write(str(liste))
+        filee.write("'")
+        filee.close()
+    print(file)
+    with open(file, 'r') as filee:
+        a = filee.read()
+        listee.append(str(a))
+    print(listee)
+    return listee
         
 def file():
     'function for write into a new file (we take last file and add + 1)'
+
     liste2 = []
     liste = os.listdir()
     for i in liste:
@@ -43,7 +56,8 @@ def file():
            or i == 'images'\
            or i == 'n1'\
            or i == 'n2'\
-           or i == '__pycache__' or i == 'test_dk.py' or i =='test_database.py':
+           or i == '__pycache__' or i == 'test_dk.py' or i =='test_database.py'\
+           or i == '.coverage' or i == 'test.py' or i=='test':
                 pass
         else:
             liste2.append(i)
@@ -121,7 +135,7 @@ class main:
             background = pygame.image.load(image_background).convert()
 
             level = Niveau(choice)
-            level.generer()
+            level.generate()
             level.display(window)
 
       
@@ -143,7 +157,7 @@ class main:
 
             for i in listeeee:
                 print(i)
-                dep = dk.deplacer(str(i))
+                dep = dk.deplacement(str(i))
 
                 window.blit(background, (0,0))
                 level.display(window)
@@ -159,7 +173,7 @@ class main:
         self.dk = dk
 
         
-        a = self.dk.deplacer(self.direction)
+        a = self.dk.deplacement(self.direction)
         LISTE_CHOICE.append(self.direction)
         try:
             if a[1] == 's':
@@ -180,7 +194,7 @@ class main:
             pass
         if a == 'M':
             choice = random.choice(self.listed)
-            dep = dk.deplacer(choice)
+            dep = dk.deplacement(choice)
 
 
 
@@ -241,54 +255,3 @@ if __name__ == '__main__':
         main.trying(perso[0], choice[1], perso[1], perso[2])
     else:
         main.game(perso[0], choice[1], perso[1], perso[2])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
