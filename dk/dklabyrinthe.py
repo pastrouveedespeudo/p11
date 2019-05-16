@@ -55,7 +55,7 @@ def fichier():
 
 
 def trait_list(a):
-    print(a,'000000000000000000000000')
+
     a = str(a)
     a = a[7:-4]
     
@@ -103,7 +103,7 @@ class main:
             pygame.display.flip()
          
             level = Niveau.choice_level(self)
-            print(level, fenetre,'000000123132132')
+
             return level, fenetre
 
 
@@ -121,7 +121,7 @@ class main:
       
             dk = Perso("images/dk_droite.png", "images/dk_gauche.png", 
             "images/dk_haut.png", "images/dk_bas.png", niveau)
-            print(dk, fond, niveau)
+          
             return dk, fond, niveau
 
 
@@ -193,16 +193,19 @@ class main:
                 if cont == 0:
                     continuer_jeu = 0
                     print(len(LISTE_CHOIX))
+                    
             if choix == 'left': 
                 cont = main.moving('gauche', listeg, dk)
                 if cont == 0:
                     continuer_jeu = 0
                     print(len(LISTE_CHOIX))
+                    
             if choix == 'bot':
                 cont = main.moving('bas', listeb, dk)
                 if cont == 0:
                     continuer_jeu = 0
                     print(len(LISTE_CHOIX))
+                    
             if choix == 'top':
                 cont = main.moving('haut', listeh, dk)
                 if cont == 0:
