@@ -23,11 +23,13 @@ import time
 
 
 def writting(file, liste):
+    'function for writing into file'
     with open(file, 'w') as file:
         file.write('a = ')
         file.write(str(liste))
         
 def file():
+    'function for write into a new file (we take last file and add + 1)'
     liste2 = []
     liste = os.listdir()
     for i in liste:
@@ -55,6 +57,7 @@ def file():
 
 
 def trait_list(a):
+    'we trating list like the return from database'
 
     a = str(a)
     a = a[7:-4]
@@ -78,8 +81,10 @@ LISTE_CASE = []
 LISTE_POS = ['right', 'left', 'top', 'bot']
 
 class main:
-
+    'class main'
+    
     def menu(self):
+        'we generating menu, here we choice the level'
         
         pygame.init()
         print(requete0.REQUETE0)
@@ -109,7 +114,8 @@ class main:
 
 
     def generate_level(self, choice, window):
-
+        'we generating the level thank to n1.txt'
+        
         if choice != 0:
 
             background = pygame.image.load(image_background).convert()
@@ -127,6 +133,7 @@ class main:
 
 
     def trying(self, dk, window, background, level):
+        'if requete0 is > 100 we let dk move alone'
 
         print(requete0.REQUETE0 >= 100)
         
@@ -145,6 +152,8 @@ class main:
 
 
     def moving(self, direction, listed, dk):
+        'Here dk can learn how found exit'
+
         self.direction = direction
         self.listed = listed
         self.dk = dk
@@ -177,7 +186,8 @@ class main:
 
 
     def game(self, dk, window, background, level):
-
+        'dk moving thank to classes.py and random choices'
+        
         continue_game = 1
         while continue_game:
             
