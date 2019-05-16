@@ -8,7 +8,17 @@ import classes as script1
                     
 from database import *
 
-class TestClass(object):    
+class TestClass(object):
+
+    def test_writting(self):
+        parametre = 'test.py'
+        parametre1 = 'test'
+        sortie = ["a = 'test'"]
+        
+        assert script.writting(parametre,parametre1) == sortie
+
+
+
     def test_trait_list(self):
         parametre = [(1, "['droite', 'droite', 'bas', 'droite', 'droite']")]
         sortie = ['droite', 'droite', 'bas', 'droite', 'droite']
