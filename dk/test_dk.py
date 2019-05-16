@@ -19,13 +19,13 @@ class TestClass(object):
     def test_fichier(self):
         sortie = 'requete2.py'
     
-        assert script.fichier() == sortie
+        assert script.file() == sortie
 
     def test_choice_level(self):
         'We verify the min move from database'
         out = 6
 
-        assert script1.help_method.traitement_database(self) == out
+        assert script1.help_method.traitement_dattodowne(self) == out
 
 
     def test_s_point_1(self):
@@ -82,7 +82,7 @@ class TestClass(object):
         
         out = None
 
-        assert script1.Perso.adroite(self) == out
+        assert script1.Perso.torigth(self) == out
 
 
     def test_bot(self):
@@ -96,7 +96,7 @@ class TestClass(object):
         
         out = None
 
-        assert script1.Perso.abas(self) == out
+        assert script1.Perso.todown(self) == out
 
 
     def test_left(self):
@@ -110,7 +110,7 @@ class TestClass(object):
         
         out = None
 
-        assert script1.Perso.agauche(self) == out
+        assert script1.Perso.toleft(self) == out
 
     def test_top(self):
         'we check that if dk is not on arrival he can move to top'
@@ -122,20 +122,10 @@ class TestClass(object):
         
         out = None
 
-        assert script1.Perso.ahaut(self) == out
+        assert script1.Perso.totop(self) == out
 
 
-    def test_top(self):
-        'we check that if dk is not on arrival he can move to top'
 
-        self.case_x = 0
-        self.case_y = 60
-        self.x = 0
-        self.y = 0
-        
-        out = None
-
-        assert script1.Perso.agauche(self) == out
 
 
 
