@@ -87,7 +87,32 @@ class Niveau:
                     
                     
 LISTE = []
-                    
+
+class help_method:
+    
+
+    def traitement_database(self):
+        visuel = visualisation_table.visualisation(self)
+        visuel = str(visuel)
+        visuel = visuel.split()
+
+        return len(visuel)
+
+    def s_point_1(self, case):
+
+        number_minimal_movement = help_method.traitement_database(self)
+        self.case += 1
+        return number_minimal_movement, 's'   
+
+
+    def s_point_2(self, case):
+        
+        self.case -= 1
+        number_minimal_movement = help_method.traitement_database(self)
+        return number_minimal_movement, 's'
+    
+
+          
 class Perso:
     """Classe permettant de créer un personnage"""
     def __init__(self, droite, gauche, haut, bas, niveau):
@@ -107,67 +132,41 @@ class Perso:
         self.niveau = niveau
     
 
-
     def adroite(self):
-        mokouaille = ''
-        
         if self.case_x < (nombre_sprite_cote - 1):
-            
-       
-            if self.niveau.structure[self.case_y][self.case_x+1] == '0' and\
-               self.niveau.structure[self.case_y][self.case_x+2] == 'M' and\
-               self.niveau.structure[self.case_y-1][self.case_x+1] == 'M' and\
-               self.niveau.structure[self.case_y+1][self.case_x+1] == 'M':
-
-                
-                mokouaille = True
-
             if self.niveau.structure[self.case_y][self.case_x+1] == 's':
-                
-                a = visualisation_table.visualisation(self)
-                a = str(a)
-                a = a.split()
-         
+
+                help_method.s_point_1(self, self.case_x)
+
+
+            if self.niveau.structure[self.case_y][self.case_x+1] != 'M':
                 self.case_x += 1
-                
-                return len(a),'s'
-
-
-            if self.niveau.structure[self.case_y][self.case_x+1] != 'm'\
-               and self.niveau.structure[self.case_y][self.case_x+1] != 'M' and\
-               mokouaille != True:
-                if mokouaille == True:
-                    pass
-                self.case_x += 1
-
                 LISTE.append((self.x, self.y))
-        
                 self.x = self.case_x * taille_sprite
 
-         
-                
+
+            
+    def abas(self):
+        if self.case_y < (nombre_sprite_cote - 1):
+            if self.niveau.structure[self.case_y + 1][self.case_x] == 's':
+
+                help_method.s_point_1(self, self.case_y)
+
+            if self.niveau.structure[self.case_y+1][self.case_x] != 'M':
+                self.case_y += 1
+                LISTE.append((self.x, self.y))
+                self.y = self.case_y * taille_sprite
+
+        
     def agauche(self):
          
         if self.case_x > 0:
-
              if self.niveau.structure[self.case_y][self.case_x-1] == 's':
 
-                 a = visualisation_table.visualisation(self)
+                 help_method.s_point_2(self, case_x)
 
-                 self.case_x -= 1
-  
-                 a = str(a)
-                 a = a.split()
-                 return len(a),'s'
 
-             if self.niveau.structure[self.case_y][self.case_x-1] != '0' and\
-               self.niveau.structure[self.case_y][self.case_x-2] != 'M' and\
-               self.niveau.structure[self.case_y-1][self.case_x-1] != 'M' and\
-               self.niveau.structure[self.case_y+1][self.case_x-1] != 'M':
-                self.case_x -= 1
-                
-             if self.niveau.structure[self.case_y][self.case_x-1] != 'm'\
-                and self.niveau.structure[self.case_y][self.case_x-1] != 'M':
+             if self.niveau.structure[self.case_y][self.case_x-1] != 'M':
                 self.case_x -= 1
                 LISTE.append((self.x, self.y))
                 self.x = self.case_x * taille_sprite
@@ -178,74 +177,12 @@ class Perso:
         if self.case_y > 0:
             if self.niveau.structure[self.case_y-1][self.case_x] == 's':
 
-                a = visualisation_table.visualisation(self)
-
-                self.case_y -= 1
-  
-
-                a = str(a)
-                a = a.split()
-                return len(a), 's'
+                help_method.s_point_2(self, case_y)
                     
-            if self.niveau.structure[self.case_y-1][self.case_x] != '0' and\
-               self.niveau.structure[self.case_y-2][self.case_x] != 'M' and\
-               self.niveau.structure[self.case_y-1][self.case_x-1] != 'M' and\
-               self.niveau.structure[self.case_y-1][self.case_x+1] != 'M':
-                self.case_y -= 1
-                
-            if self.niveau.structure[self.case_y-1][self.case_x] != 'm'\
-               and self.niveau.structure[self.case_y-1][self.case_x] != 'M':
+            if self.niveau.structure[self.case_y-1][self.case_x] != 'M':
                 self.case_y -= 1
                 LISTE.append((self.x, self.y))
                 self.y = self.case_y * taille_sprite
- 
-
-
-
-    def abas(self):
-        
-        mokouaille = ''
-
-        if self.case_y < (nombre_sprite_cote - 1):
-
-            try:
-                if self.niveau.structure[self.case_y + 1][self.case_x] == 's':
-
-                    a = visualisation_table.visualisation(self)
-    
-                    self.case_y += 1
- 
-
-                    a = str(a)
-                    a = a.split()
-                    return len(a), 's'
-                    
-                    
-                if self.niveau.structure[self.case_y + 1][self.case_x] == '0' and\
-                   self.niveau.structure[self.case_y + 2][self.case_x] == 'M' and\
-                   self.niveau.structure[self.case_y + 1][self.case_x + 1] == 'M' and\
-                   self.niveau.structure[self.case_y + 1][self.case_x - 1] == 'M':
- 
-                    mokouaille = True
-
-
-
-
-                if self.niveau.structure[self.case_y+1][self.case_x] != 'm'\
-                   and self.niveau.structure[self.case_y+1][self.case_x] != 'M' and\
-                   mokouaille != True:
-                    if mokouaille == True:
-                        pass
-                    self.case_y += 1
-                    LISTE.append((self.x, self.y))
-                    self.y = self.case_y * taille_sprite
-                    
-            except:
-                pass
-
-
-
-
 
 
     def deplacer(self, direction):
