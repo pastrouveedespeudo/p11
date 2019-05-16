@@ -1,5 +1,7 @@
 # p11
 
+#jpe faire un 15ene de test la gogogogoog
+
 #d'une part le jeu du site
 
 #https://github.com/pastrouveedespeudo/projet-8
