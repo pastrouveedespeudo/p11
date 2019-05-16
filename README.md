@@ -1,6 +1,6 @@
 # p11
 
-#le test coverage ne prend pas en compte les test de pylint
+#le test coverage ne prend pas en compte les test de pylint donc en gros chui a 95% allé 90% pcque j'ai le syndrome de l'imposteur nan c chiant les tests enfaite
 
 #d'une part le jeu du site
 
