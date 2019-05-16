@@ -7,8 +7,6 @@ from database import *
 
 
 
-
-
 class Niveau:
     """Classe permettant de créer un niveau"""
     def __init__(self, fichier):
@@ -99,13 +97,15 @@ class help_method:
         return len(visuel)
 
     def s_point_1(self, case):
-
+        self.case = case
+        
         number_minimal_movement = help_method.traitement_database(self)
         self.case += 1
         return number_minimal_movement, 's'   
 
 
     def s_point_2(self, case):
+        self.case = case
         
         self.case -= 1
         number_minimal_movement = help_method.traitement_database(self)
@@ -136,8 +136,8 @@ class Perso:
         if self.case_x < (nombre_sprite_cote - 1):
             if self.niveau.structure[self.case_y][self.case_x+1] == 's':
 
-                help_method.s_point_1(self, self.case_x)
-
+                checkpoint = help_method.s_point_1(self, self.case_x)
+                return checkpoint
 
             if self.niveau.structure[self.case_y][self.case_x+1] != 'M':
                 self.case_x += 1
@@ -145,39 +145,40 @@ class Perso:
                 self.x = self.case_x * taille_sprite
 
 
+    def agauche(self):
+         
+        if self.case_x > 0:
+             if self.niveau.structure[self.case_y][self.case_x-1] == 's':
+
+                 checkpoint = help_method.s_point_2(self, self.case_x)
+                 return checkpoint
+
+             if self.niveau.structure[self.case_y][self.case_x-1] != 'M':
+                self.case_x -= 1
+                LISTE.append((self.x, self.y))
+                self.x = self.case_x * taille_sprite
+                
             
     def abas(self):
         if self.case_y < (nombre_sprite_cote - 1):
             if self.niveau.structure[self.case_y + 1][self.case_x] == 's':
 
-                help_method.s_point_1(self, self.case_y)
+                checkpoint = help_method.s_point_1(self, self.case_y)
+                return checkpoint
 
             if self.niveau.structure[self.case_y+1][self.case_x] != 'M':
                 self.case_y += 1
                 LISTE.append((self.x, self.y))
                 self.y = self.case_y * taille_sprite
 
-        
-    def agauche(self):
-         
-        if self.case_x > 0:
-             if self.niveau.structure[self.case_y][self.case_x-1] == 's':
-
-                 help_method.s_point_2(self, case_x)
-
-
-             if self.niveau.structure[self.case_y][self.case_x-1] != 'M':
-                self.case_x -= 1
-                LISTE.append((self.x, self.y))
-                self.x = self.case_x * taille_sprite
-                    
 
     def ahaut(self):
 
         if self.case_y > 0:
             if self.niveau.structure[self.case_y-1][self.case_x] == 's':
 
-                help_method.s_point_2(self, case_y)
+                checkpoint = help_method.s_point_2(self, self.case_y)
+                return checkpoint
                     
             if self.niveau.structure[self.case_y-1][self.case_x] != 'M':
                 self.case_y -= 1
