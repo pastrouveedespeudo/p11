@@ -13,6 +13,6 @@
 #les commits 0-50 sont les modifications apportées au code original situé dans le dossier origin_dk
 
 
-#d'autre part nous pensons avoir montrer que nous maitrisions le framework (dans les grandes lignes) Django donc nous n'avons pas pris la peine de l'intégrer dans django blabla euuuuh blabla 
+#d'autre part voici un bot qui se déplace tout seul de dk_labyrinthe
 
 
