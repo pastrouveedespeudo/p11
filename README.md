@@ -1,6 +1,8 @@
 # p11
 
-#jenleve des ligne ca me rajoute du %, et ca veut que je test les commentaires nan c bugguer leur truk
+#les commits 0-50 sont les modifications apportées au code original situé dans le dossier origin_dk
+
+
 
 #d'une part le jeu du site
 
