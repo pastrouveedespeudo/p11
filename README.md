@@ -1,5 +1,8 @@
 # p11
 
+#refaire le texte des fichiers mais la j'ai pas envie et fallait faire des commits ils y sont, fallait faire un bug... ca je l'ai repris du précédent ok... et faire des tests be ny'en a... aieaieaie juste pas dire truk et faire une présentation ok
+
+
 #les commits du 15 (sont les vrais commits) et du 21 mai(sont les commits répondant aux consignes) sont les modifications du projet8 (ajout d'un jeu + des tests)
 
 #d'une part le jeu du site
