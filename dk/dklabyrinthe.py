@@ -20,26 +20,26 @@ import os
 import requete0
 import importlib
 import time
-
+import argparse
 
 def writting(file, liste):
     'function for writing into file'
-    print(file)
-    print(liste)
+
     listee = []
-    
     with open(file, 'w') as filee:
         filee.write("a = '")
         filee.write(str(liste))
         filee.write("'")
         filee.close()
-    print(file)
+
     with open(file, 'r') as filee:
         a = filee.read()
         listee.append(str(a))
-    print(listee)
+
     return listee
-        
+
+
+
 def file():
     'function for write into a new file (we take last file and add + 1)'
 
@@ -177,12 +177,12 @@ class main:
         LISTE_CHOICE.append(self.direction)
         try:
             if a[1] == 's':
-                if a[0] >= len(LISTE_CHOICE):
+                if a[0] <= len(LISTE_CHOICE):
                     insertion_table.insertion_move(self, str(LISTE_CHOICE))
                     continue_game = 0
                     return continue_game
                 
-                elif a[0] < len(LISTE_CHOICE):
+                elif a[0] > len(LISTE_CHOICE):
                     continue_game = 0
                     return continue_game
                     
