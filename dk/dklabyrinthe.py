@@ -163,8 +163,8 @@ class main:
                 level.display(window)
                 window.blit(dk.direction, (dk.x, dk.y)) 
                 pygame.display.flip()
-
-
+                
+            
     def moving(self, direction, listed, dk):
         'Here dk can learn how found exit'
 
@@ -178,13 +178,11 @@ class main:
         LISTE_CHOICE.append(self.direction)
         try:
             if a[1] == 's':
-                print(a, len(LISTE_CHOICE))
-                if a[0] <= len(LISTE_CHOICE):
-                    insertion_table.insertion_move(self, str(LISTE_CHOICE))
+                if a[0] >= len(LISTE_CHOICE):
                     continue_game = 0
                     return continue_game
                 
-                elif a[0] > len(LISTE_CHOICE):
+                elif a[0] < len(LISTE_CHOICE):
                     continue_game = 0
                     return continue_game
                     
@@ -200,7 +198,15 @@ class main:
 
 
 
-
+    def traitemnet_b(self):
+        b = visualisation_table.visualisation(self)
+        nb = 0
+        for i in b:
+            for j in str(i):
+                if j == ',':
+                    nb += 1
+        return nb
+            
     def game(self, dk, window, background, level):
         'dk moving thank to classes.py and random choices'
         
@@ -219,25 +225,44 @@ class main:
                 if cont == 0:
                     continue_game = 0
                     print(len(LISTE_CHOICE))
+                    b = main.traitemnet_b()
+                    print(b)
+                    if int(b) > int(len(LISTE_CHOICE)):
+                        print('ouiiiiiii')
+                        insertion_table.insertion_move(self, str(LISTE_CHOICE))
                     
             if choice == 'left': 
                 cont = main.moving('gauche', listeg, dk)
                 if cont == 0:
                     continue_game = 0
                     print(len(LISTE_CHOICE))
-                    
+                    b = main.traitemnet_b()
+                    print(b)
+                    if int(b) > int(len(LISTE_CHOICE)):
+                        print('ouiiiiiii')
+                        insertion_table.insertion_move(self, str(LISTE_CHOICE))
+                        
             if choice == 'bot':
                 cont = main.moving('bas', listeb, dk)
                 if cont == 0:
                     continue_game = 0
                     print(len(LISTE_CHOICE))
-                    
+                    b = main.traitemnet_b()
+                    print(b)
+                    if int(b) > int(len(LISTE_CHOICE)):
+                        print('ouiiiiiii')
+                        insertion_table.insertion_move(self, str(LISTE_CHOICE))
+                        
             if choice == 'top':
                 cont = main.moving('haut', listeh, dk)
                 if cont == 0:
                     continue_game = 0
                     print(len(LISTE_CHOICE))
-
+                    b = main.traitemnet_b()
+                    print(b)
+                    if int(b) > int(len(LISTE_CHOICE)):
+                        print('ouiiiiiii')
+                        insertion_table.insertion_move(self, str(LISTE_CHOICE))
    
             window.blit(background, (0,0))
             level.display(window)
