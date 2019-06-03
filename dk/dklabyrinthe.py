@@ -57,7 +57,7 @@ def file():
            or i == 'n1'\
            or i == 'n2'\
            or i == '__pycache__' or i == 'test_dk.py' or i =='test_database.py'\
-           or i == '.coverage' or i == 'test.py' or i=='test':
+           or i == '.coverage' or i == 'test.py' or i=='test' or i=='sout.py':
                 pass
         else:
             liste2.append(i)
@@ -174,9 +174,11 @@ class main:
 
         
         a = self.dk.deplacement(self.direction)
+        
         LISTE_CHOICE.append(self.direction)
         try:
             if a[1] == 's':
+                print(a, len(LISTE_CHOICE))
                 if a[0] <= len(LISTE_CHOICE):
                     insertion_table.insertion_move(self, str(LISTE_CHOICE))
                     continue_game = 0
